@@ -11,6 +11,7 @@ if __name__ == "__main__":
     image_processor = ImageProcessor(input_folder)
 
     output_size = int(
-        input("Enter the desired output size: [640] ") or DEFAULT_OUTPUT_SIZE
+        input(f"Enter the desired output size: [{DEFAULT_OUTPUT_SIZE}] ")
+        or DEFAULT_OUTPUT_SIZE
     )
     image_processor.process_folder(output_size)

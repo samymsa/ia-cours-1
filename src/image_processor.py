@@ -34,6 +34,8 @@ class ImageProcessor:
                 image = self.process_image(image, output_size)
                 image.save(image_output_path)
 
+        print(f"Processed images saved in '{output_folder}'.")
+
     def process_image(self, image: Image, output_size: int) -> Image:
         """Process a single image.
 
@@ -49,10 +51,13 @@ class ImageProcessor:
         return image
 
     def _resize_square(self, image: Image, output_size: int) -> Image:
-        """Resize the image to fit inside a square of size `output_size`."""
-        new_image = image.copy()
-        new_image.thumbnail((output_size, output_size))
-        return new_image
+        """Resize the image to fit inside a square of size `output_size`.
+
+        The aspect ratio is preserved.
+        """
+        ratio = output_size / max(image.size)
+        new_size = (round(image.width * ratio), round(image.height * ratio))
+        return image.resize(new_size)
 
     def _add_padding(self, image: Image, output_size: int):
         """Add padding at bottom and right to make the image square."""
