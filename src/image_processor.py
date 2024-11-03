@@ -34,6 +34,8 @@ class ImageProcessor:
                 image = self.process_image(image, output_size)
                 image.save(image_output_path)
 
+        print(f"Processed images saved in '{output_folder}'.")
+
     def process_image(self, image: Image, output_size: int) -> Image:
         """Process a single image.
 
